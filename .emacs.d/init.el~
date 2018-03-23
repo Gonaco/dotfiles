@@ -1,0 +1,35 @@
+
+
+;; The first line adds reftex-citations with C-c [, the rest sets some reftex-defaults and adds a menu which allows you to chose using \textbackslash citep{} instead of \textbackslash cite{} (this is what ACPD requires).
+
+(require 'reftex-cite)
+(defun org-mode-reftex-setup ()
+  (interactive)
+  (and (buffer-file-name) (file-exists-p (buffer-file-name))
+       (progn
+        ; Reftex should use the org file as master file. See C-h v TeX-master for infos.
+        (setq TeX-master t)
+        (turn-on-reftex)
+        ; enable auto-revert-mode to update reftex when bibtex file changes on disk
+        (global-auto-revert-mode t) ; careful: this can kill the undo
+                                    ; history when you change the file
+                                    ; on-disk.
+        (reftex-parse-all)
+        ; add a custom reftex cite format to insert links
+        ; This also changes any call to org-citation!
+        (reftex-set-cite-format
+         '((?c . "\\citet{%l}") ; natbib inline text
+           (?i . "\\citep{%l}") ; natbib with parens
+           ))))
+  (define-key org-mode-map (kbd "C-c )") 'reftex-citation)
+  (define-key org-mode-map (kbd "C-c (") 'org-mode-reftex-search))
+
+(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+(add-to-list 'org-latex-packages-alist '("" "minted"))
+(add-to-list 'org-latex-packages-alist '("" "color"))
+(setq org-latex-listings 'minted)
+
+; add emacs lisp support for minted
+(setq org-latex-custom-lang-environments
+      '((emacs-lisp "common-lispcode")))

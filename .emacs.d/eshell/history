@@ -1,0 +1,19 @@
+ls
+ssh daniel@manzanofamily.ddns.net
+ls
+write&forget.org
+emacs write&forget.org
+ls
+exit
+package-list-packages
+ls
+emacs apuntes_icv.org 
+exit
+org-latex-compile notas_MLEARN.org
+org-latex-compile ./notas_MLEARN.org
+org-latex-compile (file-remote-p (file-truename "./notas_MLEARN.org") 'localname)
+cd ../ICV/
+org-latex-compile ./apuntes_icv.org 
+org-latex-export-to-latex ./apuntes_icv.org
+ls
+exit
