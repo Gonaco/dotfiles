@@ -1,13 +1,13 @@
 ;; ISPELL
 
 (setq ispell-program-name "/usr/local/Cellar/aspell/0.60.6.1/bin/aspell")
-;; (with-eval-after-load "ispell"
-;;   (setq ispell-program-name "hunspell")
-;;   (setq ispell-dictionary "en,es")
-;;   ;; ispell-set-spellchecker-params has to be called
-;;   ;; before ispell-hunspell-add-multi-dic will work
-;;   (ispell-set-spellchecker-params)
-;;   (ispell-hunspell-add-multi-dic "en,es"))
+
+(setq ispell-program-name (executable-find "hunspell"))
+(setq ispell-dictionary "en")
+;; ispell-set-spellchecker-params has to be called
+;; before ispell-hunspell-add-multi-dic will work
+;; (ispell-set-spellchecker-params)
+;; (ispell-hunspell-add-multi-dic "en,es")
 
 ;; enable remote directory configuration files
 (setq enable-remote-dir-locals t)

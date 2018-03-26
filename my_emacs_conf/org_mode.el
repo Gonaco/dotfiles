@@ -168,7 +168,7 @@
 		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
 	       )
   (add-to-list 'org-latex-classes
-	       `("bookwsections"
+	       `("bookWsections"
 		 "\\documentclass{book}
 %[no-default-packages]
 \\usepackage{tabu}
@@ -181,7 +181,7 @@
 		 ("\\subsubsection{%s}" . "\\subsubsection*{%s}"))
 	       )
     (add-to-list 'org-latex-classes
-	       `("tufte-bookwsections"
+	       `("tufte-bookWsections"
 		 "\\documentclass{tufte-book}
 %[no-default-packages]
 \\usepackage{tabu}
@@ -230,8 +230,8 @@
          '((?c . "\\citet{%l}") ; natbib inline text
            (?i . "\\citep{%l}") ; natbib with parens
            ))))
-  (define-key org-mode-map (kbd "c-c )") 'reftex-citation)
-  (define-key org-mode-map (kbd "c-c (") 'org-mode-reftex-search))
+  (define-key org-mode-map (kbd "\C-c )") 'reftex-citation)
+  (define-key org-mode-map (kbd "\C-c (") 'org-mode-reftex-search))
 
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
 
