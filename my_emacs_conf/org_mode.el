@@ -105,12 +105,12 @@
 	       '("beamer"
 		 "\\documentclass\[11pt\]{beamer}\n
       \\mode<presentation>\n
-      \\usetheme{madrid}\n
+      \\usetheme{Madrid}\n
       %\\usecolortheme{{{{beamercolortheme}}}}\n
       \\setbeamercolor{structure}{fg=cyan!50!black}
       \\setbeamercolor*{block title example}{fg=cyan!50!black,bg=gray!10}
       \\setbeamertemplate{navigation symbols}{} % to remove the navigation symbols from the bottom of all slides uncomment this line
-      \\atbeginsection[]{
+      \\AtBeginSection[]{
         \\begin{frame}
         \\vfill
         \\centering
@@ -123,7 +123,7 @@
       \\beamertemplateballitem\n
       \\setbeameroption{show notes}
       \\usepackage{listings}
-      \\lstset{numbers=none,language=[iso]c++,tabsize=4,
+      \\lstset{numbers=none,language=[ISO]C++,tabsize=4,
   frame=single,
   basicstyle=\\small,
   showspaces=false,showstringspaces=false,
@@ -131,8 +131,8 @@
   keywordstyle=\\color{blue}\\bfseries,
   commentstyle=\\color{red},
   }\n
-      \\institute\[\]{tu delft}\n
-       \\subject{mapping quantum algorithms}\n"
+      \\institute\[\]{TU Delft}\n
+       \\subject{Quantum Computing}\n"
 
 		 ("\\section{%s}" . "\\section*{%s}")
 		 
@@ -256,36 +256,36 @@
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("ta" "#+title: ?
-#+author: daniel moreno manzano
+'("ta" "#+TITLE: ?
+#+AUTHOR: Daniel Moreno Manzano
 
 * " ""))))
 
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("paper" "#+title: ?
-#+options: toc:nil
+'("paper" "#+TITLE: ?
+#+OPTIONS: toc:nil
 
-#+latex_class: paper
-#+latex_class_options: 
-#+latex_header: 
-#+latex_header_extra: [author]
-#+latex_header_extra: \\name{daniel moreno manzano}
-#+latex_header_extra: \\address{daniel.moreno.manzano@alu-etsetb.upc.edu}
-#+keywords: 
-#+latex_compiler: pdflatex
+#+LATEX_CLASS: paper
+#+LATEX_CLASS_OPTIONS: 
+#+LATEX_HEADER: 
+#+LATEX_HEADER_EXTRA: [author]
+#+LATEX_HEADER_EXTRA: \\name{Daniel Moreno Manzano}
+#+LATEX_HEADER_EXTRA: \\address{daniel.moreno.manzano@alu-etsetb.upc.edu}
+#+KEYWORDS: 
+#+LATEX_compiler: pdflatex
 
-#+begin_abstract
+#+BEGIN_abstract
 
 
 
-#+end_abstract
+#+END_abstract
 
 * 
 
 
-* bib [delete this header]
+* BIB [delete this HEADER]
 
 bibliography:
 bibliographystyle:" ""))))
@@ -293,107 +293,107 @@ bibliographystyle:" ""))))
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("homework" "#+title: ?
-#+author: daniel moreno manzano
-#+options: h:2 texht:t toc:nil todo:nil tasks:nil tags:nil <:nil
-#+latex_class: assignment
+'("homework" "#+TITLE: ?
+#+AUTHOR: Daniel Moreno Manzano
+#+OPTIONS: H:2 texht:t toc:nil todo:nil tasks:nil tags:nil <:nil
+#+LATEX_CLASS: assignment
 
-* section
+* Section
 
-** question" ""))))
+** Question" ""))))
 
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("cheat" "#+title: ?
-#+author: daniel moreno manzano
-#+options: texht:t toc:nil todo:nil tasks:nil tags:nil <:nil
-#+latex_class: article
-#+latex_class_options:
-#+latex_header: \\usepackage{multicol} \\usepackage{calc} \\usepackage{ifthen} \\usepackage[landscape]{geometry} \\usepackage{amsmath,amsthm,amsfonts,amssymb} \\usepackage{color,graphicx,overpic}
-#+latex_header: % this sets page margins to .5 inch if using letter paper, and to 1cm
-#+latex_header: % if using a4 paper. (this probably isn't strictly necessary.)
-#+latex_header: % if using another size paper, use default 1cm margins.
-#+latex_header: \\ifthenelse{\\lengthtest { \\paperwidth = 11in}}
-#+latex_header:     { \\geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
-#+latex_header:     {\\ifthenelse{ \\lengthtest{ \\paperwidth = 297mm}}
-#+latex_header:         {\\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-#+latex_header:         {\\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
-#+latex_header:     }
-#+latex_header: 
-#+latex_header: % turn off header and footer
-#+latex_header: \\pagestyle{empty}
-#+latex_header: 
-#+latex_header: % redefine section commands to use less space
-#+latex_header: \\makeatletter
-#+latex_header: \\renewcommand{\\section}{\\@startsection{section}{1}{0mm}%
-#+latex_header:                                 {-1ex plus -.5ex minus -.2ex}%
-#+latex_header:                                 {0.5ex plus .2ex}%x
-#+latex_header:                                 {\\normalfont\\large\\bfseries}}
-#+latex_header: \\renewcommand{\\subsection}{\\@startsection{subsection}{2}{0mm}%
-#+latex_header:                                 {-1explus -.5ex minus -.2ex}%
-#+latex_header:                                 {0.5ex plus .2ex}%
-#+latex_header:                                 {\\normalfont\\normalsize\\bfseries}}
-#+latex_header: \\renewcommand{\\subsubsection}{\\@startsection{subsubsection}{3}{0mm}%
-#+latex_header:                                 {-1ex plus -.5ex minus -.2ex}%
-#+latex_header:                                 {1ex plus .2ex}%
-#+latex_header:                                 {\\normalfont\\small\\bfseries}}
-#+latex_header: \\makeatother
-#+latex_header: 
-#+latex_header: % define bibtex command
-#+latex_header: \\def\\bibtex{{\\rm b\\kern-.05em{\\sc i\\kern-.025em b}\\kern-.08em
-#+latex_header:     t\\kern-.1667em\\lower.7ex\\hbox{e}\\kern-.125emx}}
-#+latex_header: 
-#+latex_header: % don't print section numbers
-#+latex_header: \\setcounter{secnumdepth}{0}
-#+latex_header: 
-#+latex_header: 
-#+latex_header: \\setlength{\\parindent}{0pt}
-#+latex_header: \\setlength{\\parskip}{0pt plus 0.5ex}
-#+latex_header: 
-#+latex_header: %my environments
-#+latex_header: \\newtheorem{example}[section]{example}
-#+latex_header: % -----------------------------------------------------------------------
+'("cheat" "#+TITLE: ?
+#+AUTHOR: Daniel Moreno Manzano
+#+OPTIONS: texht:t toc:nil todo:nil tasks:nil tags:nil <:nil
+#+LATEX_CLASS: article
+#+LATEX_CLASS_OPTIONS:
+#+LATEX_HEADER: \\usepackage{multicol} \\usepackage{calc} \\usepackage{ifthen} \\usepackage[landscape]{geometry} \\usepackage{amsmath,amsthm,amsfonts,amssymb} \\usepackage{color,graphicx,overpic}
+#+LATEX_HEADER: % this sets page margins to .5 inch if using letter paper, and to 1cm
+#+LATEX_HEADER: % if using a4 paper. (this probably isn't strictly necessary.)
+#+LATEX_HEADER: % if using another size paper, use default 1cm margins.
+#+LATEX_HEADER: \\ifthenelse{\\lengthtest { \\paperwidth = 11in}}
+#+LATEX_HEADER:     { \\geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+#+LATEX_HEADER:     {\\ifthenelse{ \\lengthtest{ \\paperwidth = 297mm}}
+#+LATEX_HEADER:         {\\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+#+LATEX_HEADER:         {\\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+#+LATEX_HEADER:     }
+#+LATEX_HEADER: 
+#+LATEX_HEADER: % turn off header and footer
+#+LATEX_HEADER: \\pagestyle{empty}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: % redefine section commands to use less space
+#+LATEX_HEADER: \\makeatletter
+#+LATEX_HEADER: \\renewcommand{\\section}{\\@startsection{section}{1}{0mm}%
+#+LATEX_HEADER:                                 {-1ex plus -.5ex minus -.2ex}%
+#+LATEX_HEADER:                                 {0.5ex plus .2ex}%x
+#+LATEX_HEADER:                                 {\\normalfont\\large\\bfseries}}
+#+LATEX_HEADER: \\renewcommand{\\subsection}{\\@startsection{subsection}{2}{0mm}%
+#+LATEX_HEADER:                                 {-1explus -.5ex minus -.2ex}%
+#+LATEX_HEADER:                                 {0.5ex plus .2ex}%
+#+LATEX_HEADER:                                 {\\normalfont\\normalsize\\bfseries}}
+#+LATEX_HEADER: \\renewcommand{\\subsubsection}{\\@startsection{subsubsection}{3}{0mm}%
+#+LATEX_HEADER:                                 {-1ex plus -.5ex minus -.2ex}%
+#+LATEX_HEADER:                                 {1ex plus .2ex}%
+#+LATEX_HEADER:                                 {\\normalfont\\small\\bfseries}}
+#+LATEX_HEADER: \\makeatother
+#+LATEX_HEADER: 
+#+LATEX_HEADER: % define bibtex command
+#+LATEX_HEADER: \\def\\bibtex{{\\rm b\\kern-.05em{\\sc i\\kern-.025em b}\\kern-.08em
+#+LATEX_HEADER:     t\\kern-.1667em\\lower.7ex\\hbox{e}\\kern-.125emx}}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: % don't print section numbers
+#+LATEX_HEADER: \\setcounter{secnumdepth}{0}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: 
+#+LATEX_HEADER: \\setlength{\\parindent}{0pt}
+#+LATEX_HEADER: \\setlength{\\parskip}{0pt plus 0.5ex}
+#+LATEX_HEADER: 
+#+LATEX_HEADER: %my environments
+#+LATEX_HEADER: \\newtheorem{example}[section]{example}
+#+LATEX_HEADER: % -----------------------------------------------------------------------
 
-#+latex: \\begin{multicols}{3}
+#+LATEX: \\begin{multicols}{3}
 
 * 
 
-#+latex: \\end{multicols}" ""))))
+#+LATEX: \\end{multicols}" ""))))
 
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("beamer" "#+title: ?
-#+author: daniel moreno manzano
-#+options: h:2 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
-#+options:   tex:t latex:t skip:nil d:nil todo:t pri:nil tags:nil
+'("beamer" "#+TITLE: ?
+#+AUTHOR: Daniel Moreno Manzano
+#+OPTIONS: H:2 num:t toc:t \\n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:nil
 #+startup: beamer
-#+latex_class: beamer
-#+beamer_frame_level: 2
-#+columns: %45item %10beamer_env(env) %10beamer_act(act) %4beamer_col(col) %8beamer_opt(opt)
+#+LATEX_CLASS: beamer
+#+BEAMER_FRAME_LEVEL: 2
+#+COLUMNS: %45ITEM %10BEAMER_ENV(Env) %10BEAMER_ACT(Act) %4BEAMER_COL(Col) %8BEAMER_OPT(Opt)
 
-* section
+* Section
 
-** frame
+** Frame
 
-*** block 1                                        :b_block:bmcol:
-    :properties:
-    :beamer_col: 0.48
-    :beamer_env: block
-    :end:
+*** Block 1                                        :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ENV: block
+    :END:
 
-*** block 2                                        :b_block:bmcol:
-    :properties:
-    :beamer_col: 0.48
-    :beamer_act: <2->
-    :beamer_env: block
-    :end:
+*** Block 2                                        :B_block:BMCOL:
+    :PROPERTIES:
+    :BEAMER_COL: 0.48
+    :BEAMER_ACT: <2->
+    :BEAMER_ENV: block
+    :END:
 
-**** note                              :b_note:
-     :properties:
-     :beamer_env: note
-     :end:
+**** Note                              :B_note:
+     :PROPERTIES:
+     :BEAMER_ENV: note
+     :END:
 
 " ""))))
 
@@ -401,28 +401,28 @@ bibliographystyle:" ""))))
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("pdf" "#+interleave_pdf: /scp:daniel@koiserver.ddns.net:~/?" ""))))
+'("pdf" "#+INTERLEAVE_PDF: /scp:daniel@koiserver.ddns.net:~/?" ""))))
 
 (eval-after-load 'org
 '(progn
    (add-to-list 'org-structure-template-alist
-'("mpdf" ":properties:
-:interleave_pdf: /scp:daniel@koiserver.ddns.net:~/?
-:end:" ""))))
+'("mpdf" ":PROPERTIES:
+:INTERLEAVE_PDF: /scp:daniel@koiserver.ddns.net:~/?
+:END:" ""))))
 
 (eval-after-load 'org
   '(progn
    (add-to-list 'org-structure-template-alist
 		'("table" "#+caption: ?
-#+name: tab:
-#+attr_latex: :booktabs :environment :font \\tiny :width \\textwidth :float t :align |p{}|" ""))))
+#+NAME: tab:
+#+ATTR_LATEX: :booktabs :environment :font \\tiny :width \\textwidth :float t :align |p{}|" ""))))
 
 (eval-after-load 'org  
     '(progn
    (add-to-list 'org-structure-template-alist
 		'("fig" "#+caption: ?
-#+name: fig:
-#+attr_latex: :width \\textwidth" ""))))
+#+NAME: fig:
+#+ATTR_LATEX: :width \\textwidth" ""))))
 
 (eval-after-load 'org    
   '(progn
@@ -497,6 +497,13 @@ bibliographystyle:" ""))))
      ;; (sqlite . t)
      ))
   )
+
+;; \ONLY  IN BEAMER
+(eval-after-load 'org-beamer
+  '(progn
+     ;; only env for org-mode beamer
+     (add-to-list 'org-beamer-environments-extra
+		  '("onlyenv" "O" "\\begin{onlyenv}%a" "\\end{onlyenv}"))))
 
 
 ;; ORG REF

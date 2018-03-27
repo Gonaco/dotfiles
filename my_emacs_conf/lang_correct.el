@@ -2,7 +2,7 @@
 
 (setq ispell-program-name "/usr/local/Cellar/aspell/0.60.6.1/bin/aspell")
 
-(setq ispell-program-name (executable-find "hunspell"))
+;; (setq ispell-program-name (executable-find "hunspell"))
 (setq ispell-dictionary "en")
 ;; ispell-set-spellchecker-params has to be called
 ;; before ispell-hunspell-add-multi-dic will work
