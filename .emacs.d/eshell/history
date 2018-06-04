@@ -17,3 +17,23 @@ org-latex-compile ./apuntes_icv.org
 org-latex-export-to-latex ./apuntes_icv.org
 ls
 exit
+man ln
+mkdir tools
+mv IBM_QX OpenQL qbt qx-simulator tools/
+ls
+mkdir docs coding
+mv benchmark_project coding/
+mv _minted* docs/
+ls
+mv logo* *org *bbl *pdf *png *tex pics_meeting_presentation_my_thesis *bib *log Bibliography constraint_slides docs/
+ls
+mv *~ thesis_plan.org_archive docs/
+mv Bas_thesis/ writing_thesis/ docs/
+ls
+ls docs
+ls coding/
+tmux a
+ls
+ln docs/thesis_plan.org .
+ls
+source activate qpy

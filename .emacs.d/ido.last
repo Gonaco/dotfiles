@@ -1,0 +1,60 @@
+;;; -*- coding: utf-8 -*-
+
+;; ----- ido-last-directory-list -----
+(
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/" . "fidelity_analysis/")
+ ("/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/coding/" . "error_analysis/")
+ ("/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/" . "coding/")
+ ("/ssh:daniel@koiserver.ddns.net:Master/" . "Quantum_Computing_and_Quantum_Information/")
+ ("/ssh:daniel@koiserver.ddns.net:" . "Master/")
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/docs/" . "mest_presentation/")
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/" . "coding/")
+)
+
+;; ----- ido-work-directory-list -----
+(
+ "/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/fidelity_analysis/"
+ "/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/error_analysis/"
+ "/Users/danielmoreno/"
+ "/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/coding/error_analysis/"
+ "/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/"
+ "/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/docs/mest_presentation/"
+)
+
+;; ----- ido-work-file-list -----
+(
+ "toffoli_benchmark_simulation.py"
+ "quantum_benchmark.py"
+ ".emacs"
+ "mapping_presentation_mest_may_24.org"
+)
+
+;; ----- ido-dir-file-cache -----
+(
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/fidelity_analysis/" (ftp . 424480.7741635919) ".config_quantumsim.json.~undo-tree~" ".gitignore" "toffoli_simulation.py~" ".git/" ".config_quantumsim_fidelity_analysis.json.~undo-tree~" ".hardware_config_cc_light.json.~undo-tree~" "ideal_toffoli.qasm~" ".toffoli_benchmark_simulation.py.~undo-tree~" "..gitignore.~undo-tree~" "toffoli_openql.py" "config_quantumsim_fidelity_analysis.json" "hardware_config_cc_light.json" "../" "./" "ideal_toffoli.qasm" ".ideal_toffoli.qasm.~undo-tree~" "README.org" "toffoli_openql.py~" "config_quantumsim_fidelity_analysis.json~" "config_cc_light_fidelity_analysis.json" ".toffoli_openql.py.~undo-tree~" ".correct_matrix.~undo-tree~" "correct_matrix" "linke_toffoli_test.py~" "config_quantumsim.json" ".toffoli_simulation.py.~undo-tree~" "toffoli_benchmark_simulation.py~" ".fidelity.py.~undo-tree~" ".tramp_history" ".README.org.~undo-tree~" "hardware_config_cc_light.json~" "fidelity.py" "tomography_graph.png" "heatmap.png" "test_output/" "fidelity.py~" "toffoli_simulation.py" "mpl_configdir/" "toffoli_benchmark_simulation.py")
+
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/error_analysis/" (ftp . 424480.61671134725) ".experimental_fidelity_calculator.py.~undo-tree~" "experimental_fidelity_calculator.py~" "../" ".quantum_state.py.~undo-tree~" "./" "experimental_fidelity_calculator.py" "__pycache__/" "quantum_benchmark.py" ".tramp_history" "quantum_benchmark.py~")
+
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/coding/" (ftp . 424480.615852487) "../" "fidelity_analysis/" "./" ".tramp_history" "error_analysis/" "benchmark_project/")
+
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/" (ftp . 424480.6151339286) "title_abstract_thesis.org~" "title_abstract_thesis.org" "../" "./" "coding/" "thesis_plan.bib" "tools/" ".title_abstract_thesis.org.~undo-tree~" "docs/")
+
+ ("/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/coding/error_analysis/" (ftp . 424479.99498039164) ".experimental_fidelity_calculator.py.~undo-tree~" "experimental_fidelity_calculator.py~" "../" ".quantum_state.py.~undo-tree~" "./" "experimental_fidelity_calculator.py" "__pycache__/" "quantum_benchmark.py" ".tramp_history" "quantum_benchmark.py~")
+
+ ("/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/coding/" (ftp . 424479.9906076714) "../" "fidelity_analysis/" "./" ".tramp_history" "error_analysis/" "benchmark_project/")
+
+ ("/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/docs/" (ftp . 424479.9878836775) "zulehner_presentation_my_thesis.tex" "IBM_qx_routing.org~" "Rplots.pdf" "title_abstract_thesis.pdf" "meeting_presentation_my_thesis.org" "_minted-thesis_plan_presentation/" ".meeting_presentation_my_thesis.bib.~undo-tree~" "texput.log" "writing_thesis/" "thesis_plan_gantt_2.png" "intel_meeting/" "title_abstract_thesis.bbl" "sc-17.tex" "zulehner_presentation_my_thesis.tex~" "_minted-meeting_presentation_my_thesis/" "zulehner_presentation_my_thesis.bbl" "_minted-zulehner_presentation_my_thesis/" "thesis_plan.bbl" "Bibliography/" "pics_meeting_presentation_my_thesis/" "title_abstract_thesis.org~" "title_abstract_thesis.org" ".thesis_plan.org_archive.~undo-tree~" "../" ".zulehner_presentation_my_thesis.tex.~undo-tree~" ".meeting_presentation_my_thesis.org.~undo-tree~" "table2qcircuits.org" "dani_mm_info.org" "./" ".thesis_plan.org.~undo-tree~" "sc-17.tex~" "thesis_plan.pdf" "thesis_plan.org" ".dani_mm_info.org.~undo-tree~" "zulehner_presentation_my_thesis.org" "thesis_plan.bib" "meeting_presentation_my_thesis.bbl" "mapping_metrics.org" "zulehner_presentation_my_thesis.pdf" "sources_hist.png" "xyqcirc.tex" "_minted-thesis_plan/" "dani_mm_info.org~" "meeting_presentation_my_thesis.org~" "thesis_plan.tex" ".sc-17.tex.~undo-tree~" "meeting_presentation_my_thesis.tex" "Quantum_Chips_Constraints.org~" "sc-17.org" "_minted-title_abstract_thesis/" "quantum_notes.org" "7_logic_qubit.png" "thesis_plan.org~" "figs/" "IBM_qx_routing.org" ".title_abstract_thesis.org.~undo-tree~" ".thesis_meeting_presentation.org.~undo-tree~" "thesis_plan_gantt.png" "thesis_plan.org_archive" "meeting_presentation_my_thesis.tex~" "thesis_plan.tex~" "Quantum_Chips_Constraints.org" ".tramp_history" "mest_presentation/" ".thesis_plan_presentation.tex.~undo-tree~" "meeting_presentation_my_thesis.bib~" "Bas_thesis/" "mapping_metrics.org~" "constraints_analysis/" "table2qcircuits.org~" ".sc-17.org.~undo-tree~" ".table2qcircuits.org.~undo-tree~" "table2qcircuits.tex" ".sc-7.org.~undo-tree~" "meeting_presentation_my_thesis.pdf" ".thesis_plan.bib.~undo-tree~" ".sc-7.tex.~undo-tree~" "quantum_notes.org~" ".zulehner_presentation_my_thesis.org.~undo-tree~" ".thesis_plan_presentation.org.~undo-tree~" "sc-7.tex" "title_abstract_thesis.tex" "zulehner_presentation_my_thesis.org~" "sc-7.org" "thesis_plan.bib~" "sc-7.tex~")
+
+ ("/ssh:daniel@koiserver.ddns.net:Master/Quantum_Computing_and_Quantum_Information/" (ftp . 424479.98697695445) "title_abstract_thesis.org~" "title_abstract_thesis.org" "../" "./" "coding/" "thesis_plan.bib" "tools/" ".title_abstract_thesis.org.~undo-tree~" "docs/")
+
+ ("/ssh:daniel@koiserver.ddns.net:Master/" (ftp . 424479.98627830966) "TSYS/" "Research/" "DLAI/" "ESDC/" "../" "./" "EIO/" "ICV/" "DSAP/" "Quantum_Computing_and_Quantum_Information/" "DIVP/" "IBSM/" "MLEARN/" "ACWS/" "MTP/" ".tramp_history" "OVNET/" "ST/")
+
+ ("/Users/" (23273 30296 891223 790000) "Guest/" "Shared/" "danielmoreno/" ".localized" "../" "./")
+
+ ("/Users/danielmoreno/" (23317 24991 135353 2000) ".conda/" ".emacs.old" ".viminfo" ".bash_history" ".e.~undo-tree~" "github-qx-simulator/" ".python-eggs/" ".cache/" "Biblioteca de calibre/" ".python_history" "Downloads/" "anaconda3/" ".Xauthority" ".gem/" ".aspell.en.pws" ".git/" ".mailcap" "Documents/" ".aspell.en.prepl" "config.log" ".Trash/" "..emacs.~undo-tree~" ".emacs~" ".profile" "Applications/" ".emacs" "Movies/" ".ssh/" "OpenQL/" ".emacs.old~" "ManzanoNetSSHFSVolume.sh" "ManzanoServerApuntes.sh" ".anaconda/" ".toe-scores" ".wapi/" "my_emacs_conf/" "Public/" ".thesis_plan.tjp.~undo-tree~" ".matlab/" "java.log.57133" ".bash_sessions/" "KoiServerApuntes.sh" ".cups/" ".ox-taskjuggler.el.~undo-tree~" "..emacs.old.~undo-tree~" ".android/" ".emacs.d/" "rhs1229375.pyx" "Parallels/" ".oracle_jre_usage/" "qx-simulator/" ".authinfo~" ".lesshst" "quantumsim/" "CameraParameters (1).ppt" ".matplotlib/" "Library/" "Desktop/" ".ipython/" "elc/" ".gnome2/" ".flexlmrc" "#.authinfo.pgp#" ".gnus.el" "hunspell/" ".rnd" ".authinfo" ".atom/" "Pictures/" ".local/" ".JavaW" ".mime.types" ".adobe/" "#.authinfo.gpg#" ".subversion/" "ManzanoServer.sh" ".profile-anaconda3.bak" "bin/" ".CFUserTextEncoding" ".tmux.conf" ".toe-scores~" ".thumbnails/" "rhs1229275.pyx" ".gnupg/" ".DS_Store" ".RapidMiner/" ".newsrc" "rhs1110474.pyx" ".languagetool.cfg" ".gnus.el~" ".condarc" ".fonts/" ".newsrc.eld" ".pyxbld/" ".sesi_licenses.pref" "Music/" ".config/" "../" "./")
+
+ ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/docs/mest_presentation/" (ftp . 424479.88461383665) ".what_I_want_to_say.org.~undo-tree~" "what_I_want_to_say.org~" "what_I_want_to_say.tex~" "what_I_want_to_say.pdf" "mapping_presentation_mest_may_24.org~" "../" "logo.png" "mapping_presentation_mest_may_24.tex~" "./" "_minted-mapping_presentation_mest_may_24/" ".mapping_presentation_mest_may_24.org.~undo-tree~" "thesis_plan.bib" "what_I_want_to_say.odt" "mapping_presentation_mest_may_24.pdf" "what_I_want_to_say.bbl" "mapping_presentation_mest_may_24.org" "_minted-what_I_want_to_say/" "what_I_want_to_say.tex" "figs/" "what_I_want_to_say.org" "mapping_presentation_mest_may_24.bbl" "mapping_presentation_mest_may_24.tex" "logo.eps")
+)
+
+;; ----- ido-unc-hosts-cache -----
+t

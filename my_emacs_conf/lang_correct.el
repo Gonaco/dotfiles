@@ -26,3 +26,22 @@
 (global-set-key "\C-x4l" 'langtool-switch-default-language)
 (global-set-key "\C-x44" 'langtool-show-message-at-point)
 (global-set-key "\C-x4c" 'langtool-correct-buffer)
+
+;; ;; SYNOSAURUS
+
+;; (require 'synosaurus)
+;; (add-hook 'org-mode-hook (lambda () (synosaurus-mode)))
+
+;; (setq synosaurus-choose-method "popup")
+
+;; (setq synosaurus-backend 'synosaurus-backend-wordnet)
+;; (setq synosaurus-choose-method 'popup)
+
+;; ;; WWW-SYNONIMS
+;; (require 'www-synonyms)
+
+;; ;; get key here: http://thesaurus.altervista.org/mykey
+;; (setq www-synonyms-key "vVEyvJHoZB0rruiyqNB0")
+
+;; ;; any of: it, fr, de, en, el, es, no, pt, ro, ru, sk
+;; (www-synonyms-change-lang "english (gr)")

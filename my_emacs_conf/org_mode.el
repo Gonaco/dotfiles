@@ -13,23 +13,38 @@
 ;;              '("=" (:foreground "dimgrey")
 ;;                ))
 
-(require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
-
-(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
-
-(add-hook 'org-mode-hook 'turn-on-flyspell)
-(add-hook 'org-mode-hook 'flyspell-mode) ;start flyspell-mode
-;; (setq ispell-dictionary "en")    ;set the default dictionary
-
-;; tree slide
+;; TREE SLIDE
 
 (require 'org-tree-slide)
+
+;; ORG BEAUTIFY 
 
 ;; org beautify theme
 
 (when window-system (require 'org-beautify-theme))
 
+;; org bullets
+
+(require 'org-bullets)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+
+(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+
+;; line wrap
+
+(with-eval-after-load 'org       
+  (setq org-startup-indented t) ; Enable `org-indent-mode' by default
+  (add-hook 'org-mode-hook #'visual-line-mode))
+
+
+;; ORG CORRECTORS
+
+(add-hook 'org-mode-hook 'turn-on-flyspell)
+(add-hook 'org-mode-hook 'flyspell-mode) ;start flyspell-mode
+(setq ispell-dictionary "en")    ;set the default dictionary
+
+
+;; LATEX
 
 (require 'ox-latex)
 (setq org-latex-packages-alist
@@ -69,6 +84,7 @@
 		 "\\documentclass[answers]{exam}
                %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}
 \\topmargin=-0.45in
@@ -89,6 +105,7 @@
 		 "\\documentclass{article}
                %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}
                %[packages]
@@ -104,13 +121,24 @@
 	       ;; beamer class, for presentations
 	       '("beamer"
 		 "\\documentclass\[11pt\]{beamer}\n
+      \\usepackage{pgfpages}\n
+      %\\setbeameroption{show notes}\n
+      %\\setbeameroption{show notes on second screen=right}\n
       \\mode<presentation>\n
       \\usetheme{Madrid}\n
       %\\usecolortheme{{{{beamercolortheme}}}}\n
-      \\setbeamercolor{structure}{fg=cyan!50!black}
+\\DefineNamedColor{named}{azul_quantum}{RGB}{19,149,206}
+      %\\setbeamercolor{structure}{fg=cyan!50!black}
+\\setbeamercolor{structure}{fg=azul_quantum}
       \\setbeamercolor*{block title example}{fg=cyan!50!black,bg=gray!10}
       \\setbeamertemplate{navigation symbols}{} % to remove the navigation symbols from the bottom of all slides uncomment this line
       \\AtBeginSection[]{
+
+\\begin{frame}<beamer>
+\\frametitle{Topic}
+\\tableofcontents[currentsection]
+\\end{frame}
+
         \\begin{frame}
         \\vfill
         \\centering
@@ -131,8 +159,14 @@
   keywordstyle=\\color{blue}\\bfseries,
   commentstyle=\\color{red},
   }\n
-      \\institute\[\]{TU Delft}\n
-       \\subject{Quantum Computing}\n"
+      \\institute\[\]{TU Delft QCA Lab}\n
+       \\subject{Quantum Computing}\n
+
+\\pgfdeclareimage[height=0.7cm]{logo}{logo}
+\\logo{
+	\\vspace*{-0.25cm}
+	\\pgfuseimage{logo}
+	\\hspace*{-0.05cm}}"
 
 		 ("\\section{%s}" . "\\section*{%s}")
 		 
@@ -146,6 +180,7 @@
 		 "\\documentclass{book}
 %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}"
 		 ;; ("\\part{%s}" . "\\part*{%s}")
@@ -159,6 +194,7 @@
 		 "\\documentclass{tufte-book}
 %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}"
 		 ;; ("\\part{%s}" . "\\part*{%s}")
@@ -172,6 +208,7 @@
 		 "\\documentclass{book}
 %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}"
 		 ("\\part{%s}" . "\\part*{%s}")
@@ -185,6 +222,7 @@
 		 "\\documentclass{tufte-book}
 %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}"
 		 ("\\part{%s}" . "\\part*{%s}")
@@ -198,6 +236,7 @@
 		   "\\documentclass{tufte-handout}
 %[no-default-packages]
 \\usepackage{tabu}
+\\usepackage{booktabs}
 \\usepackage{float}
 \\usepackage{pdflscape}"
 		   ("\\section{%s}" . "\\section*{%s}")
@@ -284,6 +323,31 @@
 
 * 
 
+
+* BIB [delete this HEADER]
+
+bibliography:
+bibliographystyle:" ""))))
+
+(eval-after-load 'org
+'(progn
+   (add-to-list 'org-structure-template-alist
+'("book" "#+TITLE: ?
+#+AUTHOR: Daniel Moreno Manzano
+#+OPTIONS: tags:nil
+
+#+LATEX_CLASS: book
+
+#+LATEX_HEADER: \\usepackage{float}
+#+LATEX_HEADER: \\usepackage{tabu}
+#+LATEX_HEADER: \\usepackage{fullpage}
+#+LATEX_HEADER: \\usepackage{pdflscape}
+#+LATEX_HEADER: \\usepackage{tikz} \\usetikzlibrary{mindmap,calc,trees,positioning,arrows,chains,shapes.geometric,decorations.pathreplacing,decorations.pathmorphing,shapes,matrix,shapes.symbols,plotmarks,decorations.markings,shadows}
+#+LATEX_HEADER: \\usepackage{tikz-qtree}
+
+** Preface/Abstract
+
+* 
 
 * BIB [delete this HEADER]
 
@@ -442,6 +506,15 @@ bibliographystyle:" ""))))
 \\label{fig:}
 #+END_figure*" ""))))
 
+(eval-after-load 'org
+  '(progn
+     (add-to-list 'org-structure-template-alist
+		'("abs" "#+BEGIN_abstract
+
+?
+
+#+END_abstract" ""))))
+
 
 ;; ORG-BABEL
 
@@ -499,7 +572,7 @@ bibliographystyle:" ""))))
   )
 
 ;; \ONLY  IN BEAMER
-(eval-after-load 'org-beamer
+(eval-after-load 'ox-beamer
   '(progn
      ;; only env for org-mode beamer
      (add-to-list 'org-beamer-environments-extra
@@ -513,3 +586,45 @@ bibliographystyle:" ""))))
 ;; PDF TOOLS
 
 (pdf-tools-install)
+
+;; ;; TASKJUGGLER
+;; (require 'ox-taskjuggler)
+
+
+;; AUTO COMPLETE IN ORG (auto-complete-mode)
+
+;; (add-hook 'org-mode-hook 'auto-complete-mode)
+;; (add-to-list 'ac-modes 'org-mode)
+
+;; (require 'org-ac)
+;; ;; Make config suit for you. About the config item, eval the following sexp.
+;; ;; (customize-group "org-ac")
+;; (org-ac/config-default)
+
+;; WRITING GOOD
+(require 'writegood-mode)
+(add-hook 'org-mode-hook 'writegood-mode)
+(global-set-key "\C-cg" 'writegood-mode)
+
+(global-set-key "\C-c\C-gg" 'writegood-grade-level)
+(global-set-key "\C-c\C-ge" 'writegood-reading-ease)
+
+;; NO DISTRACTIONS
+
+;; darkroom
+(require 'darkroom)
+
+(with-eval-after-load 'org
+  (global-set-key (kbd "<C-escape>") 'darkroom-tentative-mode)
+  (global-set-key (kbd "<C-M-escape>") 'darkroom-mode))
+
+;; (with-eval-after-load 'darkroom-tentative-mode
+;;   ())
+
+;; writeroom
+(with-eval-after-load 'writeroom-mode
+  (define-key writeroom-mode-map (kbd "C-M-<") #'writeroom-decrease-width)
+  (define-key writeroom-mode-map (kbd "C-M->") #'writeroom-increase-width)
+  (define-key writeroom-mode-map (kbd "C-M-=") #'writeroom-adjust-width))
+
+

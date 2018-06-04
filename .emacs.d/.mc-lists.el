@@ -8,6 +8,7 @@
 	kill-region
 	langtool-check
 	org-beginning-of-line
+	org-comment-dwim
 	org-cycle
 	org-delete-char
 	org-end-of-line
@@ -23,6 +24,7 @@
 	org-ref-helm-insert-cite-link
 	org-return-indent
 	org-self-insert-command
+	org-shifttab
 	org-yank
 	))
 
@@ -31,6 +33,11 @@
 	end-of-buffer
 	find-file
 	kmacro-end-or-call-macro
+	langtool-check-done
 	mouse-drag-mode-line
 	mouse-select-window
+	org-export-dispatch
+	pdf-util-image-map-mouse-event-proxy
+	pdf-view-mouse-set-region
+	switch-to-buffer
 	))
