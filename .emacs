@@ -77,15 +77,15 @@
 
 ;; THEME
 
-(load-file "my_emacs_conf/theme.el")
+(load-file "~/my_emacs_conf/theme.el")
 
 ;; LANGUAGE CORRECTORS
 
-(load-file "my_emacs_conf/lang_correct.el")
+(load-file "~/my_emacs_conf/lang_correct.el")
 
 ;; ORG MODE
 
-(load-file "my_emacs_conf/org_mode.el")
+(load-file "~/my_emacs_conf/org_mode.el")
 
 ;; TRAMP
 
@@ -121,7 +121,7 @@
 
 ;; PROGRAMMING
 
-(load-file "my_emacs_conf/programming.el")
+(load-file "~/my_emacs_conf/programming.el")
 
 ;; HELM
 
@@ -152,7 +152,7 @@
 
 ;; CALENDAR
 
-(load-file "my_emacs_conf/calendar.el")
+(load-file "~/my_emacs_conf/calendar.el")
 
 (provide '.emacs)
 ;;; .emacs ends here
