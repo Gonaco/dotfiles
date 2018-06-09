@@ -136,7 +136,7 @@
 ;; SPEEDBAR
 
 (require 'sr-speedbar)
-(sr-speedbar-open)
+;; (sr-speedbar-open)
 (global-set-key (kbd "C-x M-f") 'sr-speedbar-open)
 (global-set-key (kbd "<f9>") 'sr-speedbar-toggle)
 
