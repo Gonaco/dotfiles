@@ -13,8 +13,8 @@
 
 (pyvenv-activate "/anaconda3/envs/py3")
 
-;; enable ipython
-(elpy-use-ipython)
+;; ;; enable ipython
+;; (elpy-use-ipython)
 
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
@@ -22,21 +22,21 @@
 (setq elpy-rpc-backend "jedi")
 (add-hook 'python-mode-hook 'jedi:setup)
 (setq jedi:complete-on-dot t)
-;; enable autopep8 formatting on save
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-;; (exec-path-from-shell-copy-env "/ssh:daniel@koiserver.ddns.net:~/.bashrc")
+;; ;; enable autopep8 formatting on save
+;; (require 'py-autopep8)
+;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
+;; ;; (exec-path-from-shell-copy-env "/ssh:daniel@koiserver.ddns.net:~/.bashrc")
 
-(require 'pyenv-mode)
+;; (require 'pyenv-mode)
 
-(defun projectile-pyenv-mode-set ()
-  "Set pyenv version matching project name."
-  (let ((project (projectile-project-name)))
-    (if (member project (pyenv-mode-versions))
-        (pyenv-mode-set project)
-      (pyenv-mode-unset))))
+;; (defun projectile-pyenv-mode-set ()
+;;   "Set pyenv version matching project name."
+;;   (let ((project (projectile-project-name)))
+;;     (if (member project (pyenv-mode-versions))
+;;         (pyenv-mode-set project)
+;;       (pyenv-mode-unset))))
 
-(add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
+;; (add-hook 'projectile-after-switch-project-hook 'projectile-pyenv-mode-set)
 
 
 ;; ;; org 2 jupyter

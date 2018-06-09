@@ -40,7 +40,7 @@
  '(org-ac/ac-trigger-command-keys (quote ("\\" "*" "+")))
  '(org-agenda-files
    (quote
-    ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/title_abstract_thesis.org")))
+    ("/home/daniel/Master/Quantum_Computing_and_Quantum_Information/title_abstract_thesis.org")))
  '(package-selected-packages
    (quote
     (fountain-mode darkroom sublimity writegood-mode writeroom-mode xkcd www-synonyms synonymous synosaurus sr-speedbar exec-path-from-shell pyenv-mode jedi-direx pungi jedi ob-ipython calfw-org org-super-agenda org-context pos-tip vlf ess ess-R-object-popup ess-view ac-ispell helm-ispell langtool helm-orgcard ob-diagrams ob-spice ob-translate org-agenda-property org-alert org-autolist org-beautify-theme org-pdfview helm helm-bibtex interleave org-capture-pop-frame org-ref pdf-tools multiple-cursors org-bullets org-dashboard org-gcal org-grep org-tree-slide org-wc org-wunderlist irfc ample-theme flycheck flymd markdown-mode markdown-mode+ markdown-preview-mode org-ac undo-tree yasnippet)))
@@ -49,7 +49,7 @@
     ((pyvenv-activate "/home/daniel/anaconda3/envs/qpy/")
      (exec-path-from-shell-copy-env "/home/daniel/anaconda3/envs/qpy")
      (exec-path-from-shell-initialize)
-     (pyvenv-activate "/ssh:daniel@koiserver.ddns.net:/home/daniel/anaconda3/envs/qpy/"))))
+     (pyvenv-activate "/home/daniel/anaconda3/envs/qpy/"))))
  '(synosaurus-backend (quote synosaurus-backend-wordnet))
  '(synosaurus-prefix ""))
 (custom-set-faces
@@ -87,20 +87,20 @@
 
 (load-file "~/my_emacs_conf/org_mode.el")
 
-;; TRAMP
+;; ;; TRAMP
 
-(require 'tramp)
-(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-(setq tramp-default-method "ssh")
-; backup (file~) disabled and auto-save (#file#) locally to prevent delays in editing remote files
-(add-to-list 'backup-directory-alist
-             (cons tramp-file-name-regexp nil))
-(setq tramp-auto-save-directory temporary-file-directory)
-(setq tramp-verbose 10)
+;; (require 'tramp)
+;; (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+;; (setq tramp-default-method "ssh")
+;; ; backup (file~) disabled and auto-save (#file#) locally to prevent delays in editing remote files
+;; (add-to-list 'backup-directory-alist
+;;              (cons tramp-file-name-regexp nil))
+;; (setq tramp-auto-save-directory temporary-file-directory)
+;; (setq tramp-verbose 10)
 
-(let ((default-directory "/ssh:daniel@koiserver.ddns.net:"))
-  (start-file-process "grep" (get-buffer-create "*grep*")
-                      "/bin/sh" "-c" "grep -e tramp *"))
+;; (let ((default-directory "/ssh:daniel@koiserver.ddns.net:"))
+;;   (start-file-process "grep" (get-buffer-create "*grep*")
+;;                       "/bin/sh" "-c" "grep -e tramp *"))
 
 ;; VIEW LARGE FILES (VLF)
 

@@ -2,8 +2,8 @@
 
 (global-set-key "\C-ca" 'org-agenda)
 
-;; run the calendar when opening
-(org-agenda)
+;; ;; run the calendar when opening
+;; (org-agenda)
 
 ;; ;; gcal
 
