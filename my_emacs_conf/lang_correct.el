@@ -22,10 +22,10 @@
 (setq langtool-default-language "en-us")
 
 (global-set-key "\C-x4w" 'langtool-check)
-(global-set-key "\C-x4w" 'langtool-check-done)
+;; (global-set-key "\C-x4w" 'langtool-check-done)
 (global-set-key "\C-x4l" 'langtool-switch-default-language)
-(global-set-key "\C-x44" 'langtool-show-message-at-point)
-(global-set-key "\C-x4c" 'langtool-correct-buffer)
+;; (global-set-key "\C-x44" 'langtool-show-message-at-point)
+;; (global-set-key "\C-x4c" 'langtool-correct-buffer)
 
 ;; ;; SYNOSAURUS
 

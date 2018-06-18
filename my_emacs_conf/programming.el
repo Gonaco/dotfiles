@@ -56,3 +56,7 @@
 (add-hook 'lisp-mode-hook       'hs-minor-mode)
 (add-hook 'perl-mode-hook       'hs-minor-mode)
 (add-hook 'sh-mode-hook         'hs-minor-mode)
+
+;; HI-LOCK MODE
+
+(global-hi-lock-mode 1)

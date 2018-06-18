@@ -4,6 +4,8 @@
 (setq mc/cmds-to-run-for-all
       '(
 	c-indent-line-or-region
+	down-list
+	forward-sexp
 	indent-for-tab-command
 	kill-region
 	langtool-check
@@ -26,12 +28,14 @@
 	org-self-insert-command
 	org-shifttab
 	org-yank
+	rectangle-mark-mode
 	))
 
 (setq mc/cmds-to-run-once
       '(
 	end-of-buffer
 	find-file
+	ido-find-file
 	kmacro-end-or-call-macro
 	langtool-check-done
 	mouse-drag-mode-line

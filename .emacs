@@ -40,10 +40,10 @@
  '(org-ac/ac-trigger-command-keys (quote ("\\" "*" "+")))
  '(org-agenda-files
    (quote
-    ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/title_abstract_thesis.org")))
+    ("/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/title_abstract_thesis.org" "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/agenda.org")))
  '(package-selected-packages
    (quote
-    (fountain-mode darkroom sublimity writegood-mode writeroom-mode xkcd www-synonyms synonymous synosaurus sr-speedbar exec-path-from-shell pyenv-mode jedi-direx pungi jedi ob-ipython calfw-org org-super-agenda org-context pos-tip vlf ess ess-R-object-popup ess-view ac-ispell helm-ispell langtool helm-orgcard ob-diagrams ob-spice ob-translate org-agenda-property org-alert org-autolist org-beautify-theme org-pdfview helm helm-bibtex interleave org-capture-pop-frame org-ref pdf-tools multiple-cursors org-bullets org-dashboard org-gcal org-grep org-tree-slide org-wc org-wunderlist irfc ample-theme flycheck flymd markdown-mode markdown-mode+ markdown-preview-mode org-ac undo-tree yasnippet)))
+    (helm-ag helm-swoop smex floobits rudel magit fountain-mode darkroom sublimity writegood-mode writeroom-mode xkcd www-synonyms synonymous synosaurus sr-speedbar exec-path-from-shell pyenv-mode jedi-direx pungi jedi ob-ipython calfw-org org-super-agenda org-context pos-tip vlf ess ess-R-object-popup ess-view ac-ispell helm-ispell langtool helm-orgcard ob-diagrams ob-spice ob-translate org-agenda-property org-alert org-autolist org-beautify-theme org-pdfview helm-bibtex interleave org-capture-pop-frame org-ref pdf-tools multiple-cursors org-bullets org-dashboard org-gcal org-grep org-tree-slide org-wc org-wunderlist irfc ample-theme flycheck flymd markdown-mode markdown-mode+ markdown-preview-mode org-ac undo-tree yasnippet)))
  '(safe-local-variable-values
    (quote
     ((pyvenv-activate "/home/daniel/anaconda3/envs/qpy/")
@@ -87,20 +87,20 @@
 
 (load-file "~/my_emacs_conf/org_mode.el")
 
-;; TRAMP
+;; ;; TRAMP
 
-(require 'tramp)
-(add-to-list 'tramp-remote-path 'tramp-own-remote-path)
-(setq tramp-default-method "ssh")
-; backup (file~) disabled and auto-save (#file#) locally to prevent delays in editing remote files
-(add-to-list 'backup-directory-alist
-             (cons tramp-file-name-regexp nil))
-(setq tramp-auto-save-directory temporary-file-directory)
-(setq tramp-verbose 10)
+;; (require 'tramp)
+;; (add-to-list 'tramp-remote-path 'tramp-own-remote-path)
+;; (setq tramp-default-method "ssh")
+;; ; backup (file~) disabled and auto-save (#file#) locally to prevent delays in editing remote files
+;; (add-to-list 'backup-directory-alist
+;;              (cons tramp-file-name-regexp nil))
+;; (setq tramp-auto-save-directory temporary-file-directory)
+;; (setq tramp-verbose 10)
 
-(let ((default-directory "/ssh:daniel@koiserver.ddns.net:"))
-  (start-file-process "grep" (get-buffer-create "*grep*")
-                      "/bin/sh" "-c" "grep -e tramp *"))
+;; (let ((default-directory "/ssh:daniel@koiserver.ddns.net:"))
+;;   (start-file-process "grep" (get-buffer-create "*grep*")
+;;                       "/bin/sh" "-c" "grep -e tramp *"))
 
 ;; VIEW LARGE FILES (VLF)
 
@@ -128,6 +128,58 @@
 (require 'helm)
 (require 'helm-config)
 
+;; swoop
+(require 'helm-swoop)
+
+;; Change the keybinds to whatever you like :)
+;; (global-set-key (kbd "M-i") 'helm-swoop)
+;; (global-set-key (kbd "M-I") 'helm-swoop-back-to-last-point)
+;; (global-set-key (kbd "C-c M-i") 'helm-multi-swoop)
+(global-set-key (kbd "s-f") 'helm-multi-swoop-all)
+
+;; When doing isearch, hand the word over to helm-swoop
+(define-key isearch-mode-map (kbd "s-f") 'helm-swoop-from-isearch)
+;; From helm-swoop to helm-multi-swoop-all
+(define-key helm-swoop-map (kbd "s-f") 'helm-multi-swoop-all-from-helm-swoop)
+
+;; When doing evil-search, hand the word over to helm-swoop
+;; (define-key evil-motion-state-map (kbd "M-i") 'helm-swoop-from-evil-search)
+
+;; ;; Instead of helm-multi-swoop-all, you can also use helm-multi-swoop-current-mode
+;; (define-key helm-swoop-map (kbd "M-m") 'helm-multi-swoop-current-mode-from-helm-swoop)
+
+;; ;; Move up and down like isearch
+;; (define-key helm-swoop-map (kbd "C-r") 'helm-previous-line)
+;; (define-key helm-swoop-map (kbd "C-s") 'helm-next-line)
+;; (define-key helm-multi-swoop-map (kbd "C-r") 'helm-previous-line)
+;; (define-key helm-multi-swoop-map (kbd "C-s") 'helm-next-line)
+
+;; ;; Save buffer when helm-multi-swoop-edit complete
+;; (setq helm-multi-swoop-edit-save t)
+
+;; ;; If this value is t, split window inside the current window
+;; (setq helm-swoop-split-with-multiple-windows nil)
+
+;; ;; Split direcion. 'split-window-vertically or 'split-window-horizontally
+;; (setq helm-swoop-split-direction 'split-window-vertically)
+
+;; ;; If nil, you can slightly boost invoke speed in exchange for text color
+;; (setq helm-swoop-speed-or-color nil)
+
+;; ;; ;; Go to the opposite side of line from the end or beginning of line
+;; (setq helm-swoop-move-to-line-cycle t)
+
+;; ;; Optional face for line numbers
+;; ;; Face name is `helm-swoop-line-number-face`
+;; (setq helm-swoop-use-line-number-face t)
+
+;; ;; If you prefer fuzzy matching
+;; (setq helm-swoop-use-fuzzy-match t)
+
+;; ;; If you would like to use migemo, enable helm's migemo feature
+;; (helm-migemo-mode 1)
+
+
 ;; UNDO TREE
 
 (global-undo-tree-mode)
@@ -149,6 +201,32 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 (ido-mode 1)
+
+;; SMEX
+
+(require 'smex)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands)
+;; This is your old M-x.
+(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
+;; EDIFF
+
+(if (locate-library "ediff")
+    (progn
+      (autoload 'ediff-files "ediff")
+      (autoload 'ediff-buffers "ediff")
+
+       (eval-after-load "ediff" '(progn
+              (message "doing ediff customisation")
+              (setq diff-switches               "-u"
+                ediff-custom-diff-options   "-U3"
+                ediff-split-window-function 'split-window-horizontally
+                ediff-window-setup-function 'ediff-setup-windows-plain)
+
+              (add-hook 'ediff-startup-hook 'ediff-toggle-wide-display)
+              (add-hook 'ediff-cleanup-hook 'ediff-toggle-wide-display)
+              (add-hook 'ediff-suspend-hook 'ediff-toggle-wide-display)))))
 
 ;; CALENDAR
 
