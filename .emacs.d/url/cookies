@@ -2,7 +2,10 @@
 ;; Automatically generated file!!! DO NOT EDIT!!!
 
 (setq url-cookie-storage
- 'nil)
+ '((".doi.org"
+  [url-cookie "__cfduid" "ddbd6472a4822da5e8b87eb5ce96f51701540389812" "24 Oct 19 14:03:32 [GMT]" "/" ".doi.org" nil]
+  [url-cookie "HttpOnly" nil "24 Oct 19 14:03:32 [GMT]" "/" ".doi.org" nil]))
+)
 (setq url-cookie-secure-storage
  'nil)
 

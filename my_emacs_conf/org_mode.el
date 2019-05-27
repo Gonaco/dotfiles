@@ -1,5 +1,18 @@
 ;; ORG MODE
 
+(add-hook 'org-mode-hook 
+          (lambda ()
+            (local-set-key "\M-n" 'outline-next-visible-heading)
+            (local-set-key "\M-p" 'outline-previous-visible-heading)
+            ;; table
+            (local-set-key "\C-\M-w" 'org-table-copy-region)
+            (local-set-key "\C-\M-y" 'org-table-paste-rectangle)
+            (local-set-key "\C-\M-l" 'org-table-sort-lines)
+            ;; display images
+            (local-set-key "\M-I" 'org-toggle-iimage-in-org)
+            ;; fix tab
+            (local-set-key "\C-y" 'yank)))
+
 (setq org-hide-emphasis-markers t)
 
 (with-eval-after-load 'org
@@ -9,6 +22,7 @@
   (modify-syntax-entry ?= "(=" org-mode-syntax-table)
   )
 
+(setq org-latex-prefer-user-labels t)
 ;; (add-to-list 'org-emphasis-alist
 ;;              '("=" (:foreground "dimgrey")
 ;;                ))
@@ -26,27 +40,49 @@
 ;; org bullets
 
 (require 'org-bullets)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+(with-eval-after-load 'org
+  (add-hook 'org-mode-hook (lambda () (org-bullets-mode)))
+  ;; (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  ;; (add-hook 'text-mode-hook 'org-bullets-mode)
+)
 
-(add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+(with-eval-after-load 'org
+  ;; (add-hook 'org-mode-hook (lambda () (org-autolist-mode)))
+  (add-hook 'org-mode-hook (lambda () (org-autolist-mode 1)))
+  ;; (add-hook 'text-mode-hook 'org-autolist-mode)
+)
 
-;; line wrap
+;; LINE WRAP
 
 (with-eval-after-load 'org       
   (setq org-startup-indented t) ; Enable `org-indent-mode' by default
-  (add-hook 'org-mode-hook #'visual-line-mode))
-
+  )
+;; (add-hook 'org-mode-hook (lambda () (visual-line-mode)))
+;; (add-hook 'org-mode-hook (lambda () (visual-line-mode 1)))
+(add-hook 'text-mode-hook 'visual-line-mode)
 
 ;; ORG CORRECTORS
 
-(add-hook 'org-mode-hook 'turn-on-flyspell)
-(add-hook 'org-mode-hook 'flyspell-mode) ;start flyspell-mode
+;; (add-hook 'org-mode-hook (lambda () (turn-on-flyspell)))
+;; (add-hook 'org-mode-hook (lambda () (turn-on-flyspell 1)))
+;; (add-hook 'org-mode-hook (lambda () (flyspell-mode))) ;start flyspell-mode
+;; (add-hook 'org-mode-hook (lambda () (flyspell-mode 1)))
+(add-hook 'text-mode-hook 'turn-on-flyspell)
+(add-hook 'text-mode-hook 'flyspell-mode)
 (setq ispell-dictionary "en")    ;set the default dictionary
+
+;; ;; ARTBOLLOCKS
+
+;; ;; (add-hook 'org-mode-hook (lambda () (artbollocks-mode)))
+;; ;; (add-hook 'org-mode-hook (lambda () (artbollocks-mode 1)))
+;; (add-hook 'text-mode-hook 'artbollocks-mode)
+;; ;; (add-hook 'org-capture-mode-hook 'artbollocks-mode)
 
 
 ;; LATEX
 
 (require 'ox-latex)
+;; Compiling the latex properly
 (setq org-latex-packages-alist
       (quote (("" "color" t) ("" "minted" t) ("" "parskip" t)))
       org-latex-pdf-process
@@ -55,6 +91,7 @@
 	      "bibtex $(basename %b)"
 	      "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f"
 	      "pdflatex -interaction nonstopmode -shell-escape -output-directory %o %f")))
+
 (with-eval-after-load 'ox-latex
   (add-to-list 'org-latex-classes
 	       `("paper"
@@ -324,7 +361,15 @@
 * 
 
 
-* BIB [delete this HEADER]
+* BIB                                                                :ignore:
+
+bibliography:
+bibliographystyle:" ""))))
+
+(eval-after-load 'org
+'(progn
+   (add-to-list 'org-structure-template-alist
+'("bib" "* BIB                                                                :ignore:
 
 bibliography:
 bibliographystyle:" ""))))
@@ -479,7 +524,10 @@ bibliographystyle:" ""))))
    (add-to-list 'org-structure-template-alist
 		'("table" "#+caption: ?
 #+NAME: tab:
-#+ATTR_LATEX: :booktabs :environment :font \\tiny :width \\textwidth :float t :align |p{}|" ""))))
+#+ATTR_LATEX: :booktabs :environment :font \\tiny :width \\textwidth :float t :align |p{}|
+#+TBLNAME: 
+
+#+TBLFM: " ""))))
 
 (eval-after-load 'org  
     '(progn
@@ -487,6 +535,64 @@ bibliographystyle:" ""))))
 		'("fig" "#+caption: ?
 #+NAME: fig:
 #+ATTR_LATEX: :width \\textwidth" ""))))
+
+(eval-after-load 'org  
+    '(progn
+   (add-to-list 'org-structure-template-alist
+		'("lfig" "#+BEGIN_EXPORT latex
+
+\\begin{figure}
+\\centering
+?
+\\caption{}
+\\label{fig:}
+\\end{figure}
+
+#+END_EXPORT" ""))))
+
+(eval-after-load 'org  
+    '(progn
+   (add-to-list 'org-structure-template-alist
+		'("lmfig" "#+BEGIN_EXPORT latex
+
+\\begin{figure}
+\\centering
+\\begin{minipage}{.45\\textwidth}
+?
+\\end{minipage}
+
+\\begin{minipage}{.45\\textwidth}
+
+\\end{minipage}
+
+\\caption{}
+\\label{fig:}
+\\end{figure}
+
+#+END_EXPORT" ""))))
+
+(eval-after-load 'org  
+    '(progn
+   (add-to-list 'org-structure-template-alist
+		'("lsfig" "#+BEGIN_EXPORT latex
+
+\\begin{figure}
+\\centering
+\\subfigure[]{
+?
+\\label{fig:}
+}
+
+\\subfigure[]{
+
+\\label{fig:}
+}
+
+\\caption{}
+\\label{fig:}
+\\end{figure}
+
+#+END_EXPORT" ""))))
 
 (eval-after-load 'org    
   '(progn
@@ -515,12 +621,40 @@ bibliographystyle:" ""))))
 
 #+END_abstract" ""))))
 
+(eval-after-load 'org
+  '(progn
+     (add-to-list 'org-structure-template-alist
+		  '("toc" "#+OPTIONS: toc:?" ""))))
+
+(eval-after-load 'org
+  '(progn
+     (add-to-list 'org-structure-template-alist
+		'("nomargin" "#+LATEX_HEADER: \\usepackage{geometry}
+#+LATEX_HEADER: \\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+?" ""))))
+
+(eval-after-load 'org
+  '(progn
+     (add-to-list 'org-structure-template-alist
+		'("thesisintro" "#+LATEX_CLASS: book
+#+EXCLUDE_TAGS: noexport thesisnoexport
+#+OPTIONS: tags:nil <:nil author:nil date:nil title:nil toc:nil
+# num:nil
+?" ""))))
+
+(eval-after-load 'org
+  '(progn
+     (add-to-list 'org-structure-template-alist
+		'("eq" "#+NAME: eq:?
+\\begin{equation}
+
+\\end{equation}" ""))))
 
 ;; ORG-BABEL
 
 (with-eval-after-load 'org
   (require 'ob-python)
-  (require 'ob-ipython)
+  ;; (require 'ob-ipython)
   ;; (require 'ob-clojure)
   ;; (require 'ob-perl)
   ;; (require 'ob-dot)
@@ -533,7 +667,7 @@ bibliographystyle:" ""))))
   ;; (require 'ob-js)
   (require 'ob-latex)
   ;; (require 'ob-plantuml)
-  (require 'ob-sh)
+  (require 'ob-shell)
   (require 'ob-ditaa)
   ;; (require 'ob-awk)
   ;; (require 'ob-octave)
@@ -558,9 +692,9 @@ bibliographystyle:" ""))))
      (latex . t)
      ;; (plantuml . t)
      ;; (ruby . t)
-     (sh . t)
+     (shell . t)
      (python . t)
-     (ipython . t)
+     ;; (ipython . t)
      ;; (emacs-lisp . t)
      (ditaa . t)
      ;; (awk . t)
@@ -581,11 +715,35 @@ bibliographystyle:" ""))))
 
 ;; ORG REF
 
+;; (setq org-ref-bibliography-notes "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Bibliography/notes.org"
+;;       org-ref-default-bibliography '("~/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Bibliography/references.bib")
+;;       org-ref-pdf-directory "~/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Bibliography/bibtex-pdfs/")
+
+;; (unless (file-exists-p org-ref-pdf-directory)
+;;   (make-directory org-ref-pdf-directory t))
+
+;; open pdf with system pdf viewer (works on mac)
+(setq bibtex-completion-pdf-open-function
+  (lambda (fpath)
+    (start-process "open" "*open*" "open" fpath)))
+
+;; alternative
+(setq bibtex-completion-pdf-open-function 'org-ref-helm-cite)
+
 (require 'org-ref)
+(require 'org-ref-latex)
+(require 'org-ref-pdf)
+(require 'org-ref-url-utils)
+
+
 
 ;; PDF TOOLS
 
 (pdf-tools-install)
+
+;; IGNORE HEADLINES with tag "ignore"
+(require 'ox-extra)
+(ox-extras-activate '(ignore-headlines))
 
 ;; ;; TASKJUGGLER
 ;; (require 'ox-taskjuggler)
@@ -603,7 +761,10 @@ bibliographystyle:" ""))))
 
 ;; WRITING GOOD
 (require 'writegood-mode)
-(add-hook 'org-mode-hook 'writegood-mode)
+
+;; (add-hook 'org-mode-hook (lambda () (writegood-mode)))
+;; (add-hook 'org-mode-hook (lambda () (writegood-mode 1)))
+(add-hook 'text-mode-hook 'writegood-mode)
 (global-set-key "\C-cg" 'writegood-mode)
 
 (global-set-key "\C-c\C-gg" 'writegood-grade-level)
@@ -627,4 +788,147 @@ bibliographystyle:" ""))))
   (define-key writeroom-mode-map (kbd "C-M->") #'writeroom-increase-width)
   (define-key writeroom-mode-map (kbd "C-M-=") #'writeroom-adjust-width))
 
+;; ORG-CAPTURE
+(define-key global-map (kbd "<f5>") 'org-capture)
+(setq org-export-coding-system 'utf-8)
 
+(setq org-capture-templates
+      '(("t"
+	 "TODO list item"
+	 entry
+	 ;; (file+headline org-default-notes-file "Tasks")
+	 (file+headline "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Agenda/agenda.org" "General Tasks")
+	 ;; "* TODO %?%^{Task}\n %i\n %a"
+	 "* TODO %?%^{Task}\n"
+	 )
+	("Q"
+	 "Quantum TODO list item"
+	 entry
+	 (file+headline "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Agenda/mapping_paper.org" "Tasks")
+	 "** TODO %?%^{Task}\n"
+	 )
+	("j"
+	 "Journal entry"
+	 entry
+	 (file+datetree "~/org/journal.org")
+	 ;; (file "~/.emacs.d/org-templates/journal.orgcaptmpl")
+	 "**** %U %^{Title} 
+               %?"
+	 )
+	("T"
+	 "Quantum thoughts"
+	 entry
+	 (file+headline "/ssh:daniel@koiserver.ddns.net:/home/daniel/Master/Quantum_Computing_and_Quantum_Information/mapping_paper.org" "Thoughts")
+	 "** %U %^{Title}\n %?"
+	 )
+	("s"
+	 "Code snippets"
+	 entry
+	 (file "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/snippets.org")
+         "* %^{Snippet name}\t%^g\n#+BEGIN_SRC %^{language}\n%?\n#+END_SRC"
+	 )
+	("w"
+	 "Searching for job TODO tasks"
+	 entry
+	 ;; (file+headline org-default-notes-file "Tasks")
+	 (file+headline "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Agenda/buscar_trabajo.org" "Tasks")
+	 ;; "* TODO %?%^{Task}\n %i\n %a"
+	 "* TODO %?%^{Task}\n"
+	 )
+	("M"
+	 "Tareas Malnascudes"
+	 entry
+	 ;; (file+headline org-default-notes-file "Tasks")
+	 (file+headline "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Agenda/malnascudes.org" "Tasks")
+	 ;; "* TODO %?%^{Task}\n %i\n %a"
+	 "* TODO %?%^{Task}\n"
+	 )
+	("m"
+	 "Music tasks"
+	 entry
+	 ;; (file+headline org-default-notes-file "Tasks")
+	 (file+headline "/ssh:daniel@koiserver.ddns.net:/home/daniel/Documents/Agenda/music.org" "Tasks")
+	 ;; "* TODO %?%^{Task}\n %i\n %a"
+	 "* TODO %?%^{Task}\n"
+	 )
+	)
+      )
+
+;; ORG ADDING CUSTOM_ID
+(require 'org-id)
+(setq org-id-link-to-org-use-id 'create-if-interactive-and-no-custom-id)
+(global-set-key (kbd "C-c l") 'org-store-link)
+
+;; ;; functions for adding our custom
+
+;; (defun eos/org-custom-id-get (&optional pom create prefix)
+;;   "Get the CUSTOM_ID property of the entry at point-or-marker POM.
+;;    If POM is nil, refer to the entry at point. If the entry does
+;;    not have an CUSTOM_ID, the function returns nil. However, when
+;;    CREATE is non nil, create a CUSTOM_ID if none is present
+;;    already. PREFIX will be passed through to `org-id-new'. In any
+;;    case, the CUSTOM_ID of the entry is returned."
+;;   (interactive)
+;;   (org-with-point-at pom
+;;     (let ((id (org-entry-get nil "CUSTOM_ID")))
+;;       (cond
+;;        ((and id (stringp id) (string-match "\\S-" id))
+;;         id)
+;;        (create
+;;         (setq id (org-id-new (concat prefix "h")))
+;;         (org-entry-put pom "CUSTOM_ID" id)
+;;         (org-id-add-location id (buffer-file-name (buffer-base-buffer)))
+;;         id)))))
+
+;; (defun eos/org-add-ids-to-headlines-in-file ()
+;;   "Add CUSTOM_ID properties to all headlines in the current
+;;    file which do not already have one. Only adds ids if the
+;;    `auto-id' option is set to `t' in the file somewhere. ie,
+;;    #+OPTIONS: auto-id:t"
+;;   (interactive)
+;;   (save-excursion
+;;     (widen)
+;;     (goto-char (point-min))
+;;     (when (re-search-forward "^#\\+OPTIONS:.*auto-id:t" (point-max) t)
+;;       (org-map-entries (lambda () (eos/org-custom-id-get (point) 'create))))))
+
+;; (defun org-id-new (&optional prefix)
+;;   "Create a new globally unique ID.
+
+;; An ID consists of two parts separated by a colon:
+;; - a prefix
+;; - a unique part that will be created according to `org-id-method'.
+
+;; PREFIX can specify the prefix, the default is given by the variable
+;; `org-id-prefix'.  However, if PREFIX is the symbol `none', don't use any
+;; prefix even if `org-id-prefix' specifies one.
+
+;; So a typical ID could look like \"Org-4nd91V40HI\"."
+;;   (let* ((prefix (if (eq prefix 'none)
+;;                      ""
+;;                    (concat (or prefix org-id-prefix) "-")))
+;;          unique)
+;;     (if (equal prefix "-") (setq prefix ""))
+;;     (cond
+;;      ((memq org-id-method '(uuidgen uuid))
+;;       (setq unique (org-trim (shell-command-to-string org-id-uuid-program)))
+;;       (unless (org-uuidgen-p unique)
+;;         (setq unique (org-id-uuid))))
+;;      ((eq org-id-method 'org)
+;;       (let* ((etime (org-reverse-string (org-id-time-to-b36)))
+;;              (postfix (if org-id-include-domain
+;;                           (progn
+;;                             (require 'message)
+;;                             (concat "@" (message-make-fqdn))))))
+;;         (setq unique (concat etime postfix))))
+;;      (t (error "Invalid `org-id-method'")))
+;;     (concat prefix unique)))
+
+;; NAVI
+
+(require 'navi-mode)
+
+;; CLEANING ORG-MODE-HOOK
+
+;; (remove-hook 'org-mode-hook 'org-ref-org-menu)
+(remove-hook 'org-mode-hook 'ob-ipython-auto-configure-kernels)

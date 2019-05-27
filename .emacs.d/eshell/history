@@ -37,3 +37,21 @@ ls
 ln docs/thesis_plan.org .
 ls
 source activate qpy
+ssh daniel@koiserver.ddns.net
+ssh daniel@koiserver.ddns.net
+cd ../..
+ls
+ctags -e -R .
+ctags -R .
+ls
+cd ql
+ls
+ctags -R .
+ctags -e -R .
+rm ../tags 
+cd ..
+ctags -e -R *.cpp *.hpp *.h
+ls tags
+ctags -e -R *
+ctags -R *.cpp *.hpp *.h
+sqlite

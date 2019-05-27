@@ -3,18 +3,37 @@
 
 (setq mc/cmds-to-run-for-all
       '(
+	backward-sexp
+	beginning-of-buffer
+	beginning-of-visual-line
+	c-electric-brace
+	c-electric-delete-forward
+	c-electric-lt-gt
+	c-electric-semi&comma
 	c-indent-line-or-region
+	comment-dwim
 	down-list
+	electric-newline-and-maybe-indent
+	elpy-company-backend
+	end-of-defun
+	end-of-visual-line
 	forward-sexp
+	handle-switch-frame
+	ido-switch-buffer
 	indent-for-tab-command
 	kill-region
 	langtool-check
+	magit-stage
+	org-agenda-next-line
+	org-agenda-priority-down
 	org-beginning-of-line
 	org-comment-dwim
+	org-ctrl-c-ctrl-c
 	org-cycle
 	org-delete-char
 	org-end-of-line
 	org-footnote-action
+	org-force-cycle-archived
 	org-force-self-insert
 	org-insert-heading-respect-content
 	org-insert-todo-heading
@@ -25,19 +44,30 @@
 	org-open-line
 	org-ref-helm-insert-cite-link
 	org-return-indent
+	org-schedule
 	org-self-insert-command
+	org-set-tags-command
+	org-shiftleft
+	org-shiftright
 	org-shifttab
 	org-yank
+	python-nav-backward-up-list
 	rectangle-mark-mode
+	yank-rectangle
 	))
 
 (setq mc/cmds-to-run-once
       '(
+	darkroom-tentative-mode
+	dired-unmark-backward
+	electric-pair-delete-pair
 	end-of-buffer
 	find-file
 	ido-find-file
 	kmacro-end-or-call-macro
 	langtool-check-done
+	magit-section-forward
+	magit-status
 	mouse-drag-mode-line
 	mouse-select-window
 	org-export-dispatch
