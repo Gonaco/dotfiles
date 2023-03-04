@@ -48,7 +48,7 @@ This function should only modify configuration layer settings."
      ;; markdown
      ;; multiple-cursors
      org
-     org-customized
+     ;; org-customized
      (osx :variables osx-option-as 'meta
           osx-right-option-as 'none)
      ;; (shell :variables
@@ -555,8 +555,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  ;; * MULTIPLE CURSORS
-  (require 'multiple-cursors)
+  ;; ;; * MULTIPLE CURSORS
+  ;; (require 'multiple-cursors)
 )
 
 
@@ -594,7 +594,16 @@ before packages are loaded."
   (global-set-key (kbd "C-x g") 'magit)
 )
 
-(message "END user-config")(custom-set-variables
+(message "END user-config")
+
+;; Do not write anything past this comment. This is where Emacs will
+;; auto-generate custom variable definitions.
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+  (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
@@ -611,12 +620,4 @@ before packages are loaded."
  ;; If there is more than one, they won't work right.
  )
 )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
 
