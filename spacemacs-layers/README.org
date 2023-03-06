@@ -1,0 +1,6 @@
+This folder contains my custom layers for spacemacs. It needs to be stowed as below so the layers can work in a fresh installation.
+
+#+BEGIN_SRC shell
+cd ~/.dotfiles/spacemacs-layers/
+stow -d ~/.dotfiles/spacemacs-layers -t ~/.dotfiles/.emacs-configs/spacemacs/private .
+#+END_SRC

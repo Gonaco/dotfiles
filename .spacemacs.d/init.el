@@ -48,7 +48,7 @@ This function should only modify configuration layer settings."
      ;; markdown
      ;; multiple-cursors
      org
-     ;; org-customized
+     org-customized
      (osx :variables osx-option-as 'meta
           osx-right-option-as 'none)
      ;; (shell :variables
@@ -593,12 +593,46 @@ before packages are loaded."
 
   (message "LOAD user-config")
 
-  ;; * ORG
-  (setq org-todo-keywords
-    '(
-      ;; (sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
-      (sequence "BACKLOG(b)" "NEXT(n)" "DISCOVERY(p)" "READY(r)" "INPROGRESS(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "FOLLOWUP(f!)" "DONE(d!)" "DISCARDED(k@)")))
-  (setq org-clock-sound "/System/Library/Sounds/Glass.aiff")
+  ;; * ORG Roam
+
+  ;; *** sqlite3 for M2 chips
+
+  (straight-use-package 'emacsql-sqlite3)
+  (straight-use-package 'sqlite3)
+
+  (use-package org-roam
+    :ensure t
+    :custom
+    (org-roam-directory (file-truename "~/org/roam/"))
+    :bind (("C-c n l" . org-roam-buffer-toggle)
+           ("C-c n f" . org-roam-node-find)
+           ("C-c n g" . org-roam-graph)
+           ("C-c n i" . org-roam-node-insert)
+           ("C-c n c" . org-roam-capture)
+           ;; Dailies
+           ("C-c n j" . org-roam-dailies-capture-today))
+    :config
+    ;; Change needed for M2 chips
+    (setq org-roam-database-connector 'sqlite3)
+    ;; If you're using a vertical completion framework, you might want a more informative completion interface
+    (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+    (org-roam-db-autosync-mode)
+    ;; If using org-roam-protocol
+    (require 'org-roam-protocol))
+  ;; *** org-roam-ui
+  ;; (use-package org-roam-ui
+  ;;   :straight
+  ;;   (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+  ;;   :after org-roam
+  ;;   ;;         normally we'd recommend hooking orui after org-roam, but since org-roam does not have
+  ;;   ;;         a hookable mode anymore, you're advised to pick something yourself
+  ;;   ;;         if you don't care about startup time, use
+  ;;   ;;  :hook (after-init . org-roam-ui-mode)
+  ;;   :config
+  ;;   (setq org-roam-ui-sync-theme t
+  ;;         org-roam-ui-follow t
+  ;;         org-roam-ui-update-on-save t
+  ;;         org-roam-ui-open-on-start t))
 
   ;; * MULTIPLE CURSORS KeyBoards
 
@@ -619,15 +653,15 @@ before packages are loaded."
 This is an auto-generated function, do not modify its content directly, use
 Emacs customize menu instead.
 This function is called at the very end of Spacemacs initialization."
-  (custom-set-variables
+(custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(org-agenda-files
-   '("/Volumes/CARTUCHO NE/projects/matriu.id/becas/sonar_23/beca_sonar_23.org" "/Users/daniel/org/notes.org"))
+   '("~/Library/CloudStorage/GoogleDrive-memory.daniel.moreno.manzano@gmail.com/My Drive/org/wiris.org" "/Users/daniel/org/projects/audio_projects.org" "/Users/daniel/org/notes.org"))
  '(package-selected-packages
-   '(magit ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
+   '(org-roam-ui org-roam magit ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
  '(warning-suppress-log-types '(((evil-collection)))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -636,4 +670,3 @@ This function is called at the very end of Spacemacs initialization."
  ;; If there is more than one, they won't work right.
  )
 )
-
