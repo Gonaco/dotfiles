@@ -1,0 +1,69 @@
+* Dotfiles
+
+
+** Installation
+
+*** Requirements
+
+**** Git
+
+**** Brew
+
+**** Stow
+
+#+begin_src shell
+  brew install stow
+#+end_src
+
+**** Emacs
+
+#+begin_src shell
+  brew install --cask emacs
+#+end_src
+
+*** Emacs
+
+**** Chemacs2
+
+#+begin_src shell
+  git clone https://github.com/plexus/chemacs2 .emacs.d
+  brew install gnu-tar
+  brew tap homebrew/cask-fonts\
+  brew install --cask font-source-code-pro
+  brew install ripgrep
+#+end_src
+
+**** Install Spacemacs
+
+#+begin_src shell
+  cd .emacs-configs/
+  git clone https://github.com/syl20bnr/spacemacs.git
+  cd ../spacemacs-layers
+  stow -d ~/.dotfiles/spacemacs-layers -t ~/.dotfiles/.emacs-configs/spacemacs/private .
+#+end_src
+
+**** Install Doomemacs
+
+#+begin_src shell
+  cd .emacs-configs/
+  git clone --depth 1 https://github.com/doomemacs/doomemacs
+  cd .emacs-configs/doomemacs
+  bin/doom sync
+  bin/doom doctor
+  bin/doom build
+  bin/doom doctor
+#+end_src
+
+**** Install Crafted Emacs
+
+#+begin_src shell
+  cd .emacs-configs/
+  git clone https://github.com/SystemCrafters/crafted-emacs
+#+end_src
+
+*** Create links to the configuration files
+
+#+begin_src shell
+  stow .
+#+end_src
+
