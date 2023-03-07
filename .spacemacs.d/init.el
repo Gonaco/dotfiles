@@ -610,8 +610,12 @@ before packages are loaded."
            ("C-c n i" . org-roam-node-insert)
            ("C-c n c" . org-roam-capture)
            ;; Dailies
-           ("C-c n j" . org-roam-dailies-capture-today))
+           ("C-c n j" . org-roam-dailies-capture-today)
+           :map org-mode-map
+           ("C-M-i"    . completion-at-point)
+           )
     :config
+    (org-roam-setup)
     ;; Change needed for M2 chips
     (setq org-roam-database-connector 'sqlite3)
     ;; If you're using a vertical completion framework, you might want a more informative completion interface
