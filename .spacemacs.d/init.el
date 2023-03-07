@@ -607,7 +607,6 @@ before packages are loaded."
     (org-roam-directory (file-truename "~/org/roam/"))
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
-           ("C-c n g" . org-roam-graph)
            ("C-c n i" . org-roam-node-insert)
            ("C-c n c" . org-roam-capture)
            ;; Dailies
@@ -633,6 +632,9 @@ before packages are loaded."
     ;;         a hookable mode anymore, you're advised to pick something yourself
     ;;         if you don't care about startup time, use
     ;;  :hook (after-init . org-roam-ui-mode)
+    :bind (
+           ("C-c n g" . org-roam-ui-open)
+           )
     :config
     (setq org-roam-ui-sync-theme t
           org-roam-ui-follow t
