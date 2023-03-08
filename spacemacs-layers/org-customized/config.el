@@ -79,15 +79,15 @@
 (setq org-capture-templates
       `(
         ("t" "Tasks")
-        ("tt" "General Task" entry (file+olp "~/org/notes.org")
+        ("tt" "General Task" entry (file+olp "~/Google Drive/My Drive/DriveSyncFiles/org/notes.org")
          "*** BACKLOG %?\n  %U\n  %a\n  %i" :empty-lines 1)
-        ("ti" "General Project" entry (file+olp "~/org/notes.org")
+        ("ti" "General Project" entry (file+olp "~/Google Drive/My Drive/DriveSyncFiles/org/notes.org")
          "** %?\n  %U\n  %a\n  %i" :empty-lines 1)
         ("ta" "Tasks")
-        ("tat" "Task in an audio project" entry (file+olp "~/org/projects/audio_projects.org")
+        ("tat" "Task in an audio project" entry (file+olp "~/Google Drive/My Drive/DriveSyncFiles/org/projects/audio_projects.org")
          "*** BACKLOG %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
-        ("tai" "Audio Project" entry (file+olp "~/org/projects/audio_projects.org" "Initiative / Project")
+        ("tai" "Audio Project" entry (file+olp "~/Google Drive/My Drive/DriveSyncFiles/org/projects/audio_projects.org" "Initiative / Project")
          "** %?\n  %U\n  %a\n  %i" :empty-lines 1)
 
         ("d" "Doc entry" entry
@@ -98,7 +98,7 @@
 
         ("j" "Journal Entries")
         ("jj" "Journal" entry
-         (file+olp+datetree "~/org/journal.org")
+         (file+olp+datetree "~/Google Drive/My Drive/DriveSyncFiles/org/journal.org")
          "\n* %<%I:%M %p> - Journal :journal:\n\n%?\n\n"
          ;; ,(dw/read-file-as-string "~/Notes/Templates/Daily.org")
          :clock-in :clock-resume
