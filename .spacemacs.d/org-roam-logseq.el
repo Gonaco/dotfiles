@@ -23,7 +23,7 @@
 
 ;; Your logseq directory should be inside your org-roam directory,
 ;; put the directory you use here
-(defvar bill/logseq-folder (f-expand (f-join org-roam-directory "~/Google Drive/My Drive/DriveSyncFiles/org/roam/")))
+(defvar bill/logseq-folder (f-expand (f-join org-roam-directory "")))
 
 ;; You probably don't need to change these values
 (defvar bill/logseq-pages (f-expand (f-join bill/logseq-folder "pages")))
