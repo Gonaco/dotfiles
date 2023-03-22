@@ -70,6 +70,9 @@
     ;; emacsql-sqlite3
 
     ;; (org-roam :location elpa)
+
+    ;; (require 'org-super-agenda)
+    ;; org-super-agenda
     )
   "The list of Lisp packages required by the custom layer.
 

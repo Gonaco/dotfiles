@@ -32,7 +32,13 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(;; clojure
+   '(html
+     python
+     python_custom
+     yaml
+     react
+     javascript
+     ;; clojure
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -69,7 +75,9 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(
+                                      ;; org-super-agenda
+                                      )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -388,7 +396,8 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-background-transparency 90
 
    ;; If non-nil show the titles of transient states. (default t)
-   dotspacemacs-show-transient-state-title t
+   ;;categoryon-nil show the titles of transient states. (default t)
+dotspacemacs-show-transient-state-title t
 
    ;; If non-nil show the color guide hint for transient state keys. (default t)
    dotspacemacs-show-transient-state-color-guide t
@@ -606,10 +615,53 @@ before packages are loaded."
     :custom
     (org-roam-directory (file-truename "~/Google Drive/My Drive/DriveSyncFiles/org/roam/pages/"))
     (org-roam-dailies-directory "journals/")
+    (org-roam-completion-everywhere t)
+    (org-roam-capture-templates
+     '(
+       ("d" "default" plain
+        "%?"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+        :unnarrowed t)
+
+       ;; Topic specific template example
+       ;; ("l" "programming language" plain
+       ;;  "* Characteristics\n\n- Family: %?\n- Inspired by: \n\n* Reference:\n\n"
+       ;;  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+       ;;  :unnarrowed t)
+       
+       ;; Literature reference template example
+       ;; ("b" "book notes" plain
+       ;;  "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+       ;;  :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n")
+       ;;  :unnarrowed t)
+
+       ;; Project template
+       ("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** BACKLOG Add initial tasks\n\n* Dates\n\n"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+        :unnarrowed t)
+
+       ;; Audio Project template
+       ("a" "Audio project" plain "* Goals\n\n%?\n\n* Tasks\n\n** BACKLOG Add initial tasks\n\n* Dates\n\n"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project:@audio_project")
+        :unnarrowed t)
+
+       ;; Matriu Project template
+       ("m" "Matriu project" plain "\nA project from [[roam:matriu.id]]\n\n* Goals\n\n%?\n\n* Tasks\n\n** BACKLOG Add initial tasks\n\n* Dates\n\n"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project:@matriu")
+        :unnarrowed t)
+
+       ;; Wiris Project template
+       ("w" "wiris project" plain "\nA project from [[roam:wiris]]\n\n* Goals\n\n%?\n\n* Tasks\n\n** BACKLOG Add initial tasks\n\n* Dates\n\n"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project:@matriu")
+        :unnarrowed t)
+
+       )
+     )
     :bind (("C-c n l" . org-roam-buffer-toggle)
            ("C-c n f" . org-roam-node-find)
            ("C-c n i" . org-roam-node-insert)
            ("C-c n c" . org-roam-capture)
+           ("C-c n h" . org-id-get-create)
            ;; Dailies
            ("C-c n j" . org-roam-dailies-capture-today)
            :map org-mode-map
@@ -624,6 +676,85 @@ before packages are loaded."
     (org-roam-db-autosync-mode)
     ;; If using org-roam-protocol
     (require 'org-roam-protocol))
+
+  ;; *** Agenda for Org Roam projects
+  ;; The buffer you put this code in must have lexical-binding set to t!
+  ;; See the final configuration at the end for more details.
+  (defun my/org-roam-filter-by-tag (tag-name)
+    (lambda (node)
+      (member tag-name (org-roam-node-tags node))))
+
+  (defun my/org-roam-list-notes-by-tag (tag-name)
+    (mapcar #'org-roam-node-file
+            (seq-filter
+             (my/org-roam-filter-by-tag tag-name)
+             (org-roam-node-list))))
+
+  (defun my/org-roam-refresh-agenda-list ()
+    (interactive)
+    (setq org-agenda-files (my/org-roam-list-notes-by-tag "Project"))
+    ;; (add-to-list 'org-agenda-files (my/org-roam-list-notes-by-tag "Project"))
+    )
+
+  ;; Build the agenda list the first time for the session
+  (my/org-roam-refresh-agenda-list)
+
+  ;; **** Selecting from a list of notes with a specific tag
+  (defun my/org-roam-project-finalize-hook ()
+  "Adds the captured project file to `org-agenda-files' if the
+capture was not aborted."
+  ;; Remove the hook since it was added temporarily
+  (remove-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+  ;; Add project file to the agenda list if the capture was confirmed
+  (unless org-note-abort
+    (with-current-buffer (org-capture-get :buffer)
+      (add-to-list 'org-agenda-files (buffer-file-name)))))
+
+  (defun my/org-roam-find-project ()
+    (interactive)
+    ;; Add the project file to the agenda after capture is finished
+    (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+    ;; Select a project file to open, creating it if necessary
+    (org-roam-node-find
+     nil
+     nil
+     (my/org-roam-filter-by-tag "Project")
+     :templates
+     '(("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** Backlog Add initial tasks\n\n* Dates\n\n"
+        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+        :unnarrowed t))))
+
+  (global-set-key (kbd "C-c n p") #'my/org-roam-find-project)
+
+  ;; **** Streamlined custom capture for tasks and notes
+
+  ;; ***** Keep an inbox of notes and tasks
+  (defun my/org-roam-capture-inbox ()
+    (interactive)
+    (org-roam-capture- :node (org-roam-node-create)
+                       :templates '(("i" "inbox" plain "* %?"
+                                     :if-new (file+head "Inbox.org" "#+title: Inbox\n")))))
+
+  (global-set-key (kbd "C-c n b") #'my/org-roam-capture-inbox)
+
+  ;; ***** Capture a task directly into a specific project
+  (defun my/org-roam-capture-task ()
+    (interactive)
+    ;; Add the project file to the agenda after capture is finished
+    (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+
+    ;; Capture the new task, creating the project file if necessary
+    (org-roam-capture- :node (org-roam-node-read
+                              nil
+                              (my/org-roam-filter-by-tag "Project"))
+                       :templates '(("p" "project" plain "** BACKLOG %?"
+                                     :if-new (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org"
+                                                            "#+title: ${title}\n#+category: ${title}\n#+filetags: Project"
+                                                            ("Tasks"))))))
+
+  (global-set-key (kbd "C-c n t") #'my/org-roam-capture-task)
 
   ;; *** org-roam-ui
   (use-package org-roam-ui
@@ -672,8 +803,9 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(org-agenda-files
-   '("~/Google Drive/My Drive/DriveSyncFiles/org/wiris.org" "/Users/daniel/Google Drive/My Drive/DriveSyncFiles/org/projects/audio_projects.org" "/Users/daniel/Google Drive/My Drive/DriveSyncFiles/org/notes.org"))
+ ;; '(org-agenda-files
+ ;;   '("/Users/daniel/Google Drive/My Drive/DriveSyncFiles/org/projects/audio_projects.org" "/Users/daniel/Google Drive/My Drive/DriveSyncFiles/org/notes.org"))
+ '(org-export-backends '(ascii beamer html icalendar latex md odt))
  '(package-selected-packages
    '(org-roam-ui org-roam magit ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar open-junk-file nameless multi-line macrostep lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org helm-mode-manager helm-make helm-descbinds helm-ag google-translate golden-ratio font-lock+ flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-collection evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line))
  '(warning-suppress-log-types '((use-package) (use-package)))
