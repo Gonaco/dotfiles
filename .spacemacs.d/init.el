@@ -711,22 +711,26 @@ capture was not aborted."
     (with-current-buffer (org-capture-get :buffer)
       (add-to-list 'org-agenda-files (buffer-file-name)))))
 
-  (defun my/org-roam-find-project ()
-    (interactive)
-    ;; Add the project file to the agenda after capture is finished
-    (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
+  ;; (defun my/org-roam-find-project ()
+  ;;   (interactive)
+  ;;   ;; Add the project file to the agenda after capture is finished
+  ;;   (add-hook 'org-capture-after-finalize-hook #'my/org-roam-project-finalize-hook)
 
-    ;; Select a project file to open, creating it if necessary
-    (org-roam-node-find
-     nil
-     nil
-     (my/org-roam-filter-by-tag "Project")
-     :templates
-     '(("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** Backlog Add initial tasks\n\n* Dates\n\n"
-        :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
-        :unnarrowed t))))
-
-  (global-set-key (kbd "C-c n p") #'my/org-roam-find-project)
+  ;;   ;; Select a project file to open, creating it if necessary
+  ;;   (org-roam-node-find
+  ;;    nil
+  ;;    nil
+  ;;    (my/org-roam-filter-by-tag "Project")
+  ;;    :templates
+  ;;    '(
+  ;;      ("p" "project" plain "* Goals\n\n%?\n\n* Tasks\n\n** Backlog Add initial tasks\n\n* Dates\n\n"
+  ;;       :if-new (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+category: ${title}\n#+filetags: Project")
+  ;;       :unnarrowed t
+  ;;       )
+  ;;      )
+  ;;    )
+  ;;   )
+  ;; (global-set-key (kbd "C-c n p") #'my/org-roam-find-project)
 
   ;; **** Streamlined custom capture for tasks and notes
 
