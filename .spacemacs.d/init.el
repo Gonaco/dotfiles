@@ -47,10 +47,12 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      ;; custom
+     dap
      emacs-lisp
      git
      helm
      ;; lsp
+     lsp
      ;; markdown
      ;; multiple-cursors
      org
