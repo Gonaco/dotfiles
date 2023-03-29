@@ -48,6 +48,7 @@ This function should only modify configuration layer settings."
      better-defaults
      ;; custom
      dap
+     docker
      emacs-lisp
      git
      helm
